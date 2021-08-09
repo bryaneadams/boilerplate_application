@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<center>
+    <h1>
+        BoilerForm
+    </h1>
+</center>
+<div class="container" style="padding: 10 px;">
+    <form method="POST" action="/create_form" enctype="multiplart/form-data">
+        <div class="container">
+            <div class = "form-group">
+                {{ form.statement.label(class="form-control-label") }}
+                {{ form.statement(class = "form-control", id = "statement") }}
+            </div>
+            <div class = "form-group">
+                {{ form.submit(class="btn btn-block btn-primary") }}
+            </div>
+        </div>
+    </form>
+</div>"
+<!-- <script>
+    $(document).ready(function() {
+        $('#statement').summernote({
+            height: 300,
+            toolbar: [
+                ['font',['bold', 'clear']],
+                ['forecolor'],
+                ['link'],
+                ['codeview']
+            ]
+        });
+    })
+</script> -->
+{% endblock content %}

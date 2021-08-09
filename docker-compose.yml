@@ -1,0 +1,87 @@
+version: "3"
+services:
+  app:
+    image: ${APP_IMAGE}
+    environment: 
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      DB_PORT: ${DB_PORT}
+      KEYCLOAK_URL: ${KEYCLOAK_URL}
+      KEYCLOAK_REALM: ${KEYCLOAK_REALM}
+      KEYCLOAK_CLIENT_ID: ${KEYCLOAK_CLIENT_ID}
+      KEYCLOAK_SECRET: ${KEYCLOAK_SECRET}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_QUEUE: ${REDIS_QUEUE}
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+    depends_on: 
+      - ${POSTGRES_HOST}
+      - ${REDIS_HOST}
+      - ${MINIO_HOST}
+    networks:
+      - boilerplate
+    ports:
+      - ${APP_PORT}:5000
+  db:
+    image: bitnami/postgresql:latest
+    environment:
+      POSTGRESQL_USERNAME: ${POSTGRES_USER}
+      POSTGRESQL_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRESQL_DATABASE: ${POSTGRES_DB}
+    ports: 
+      - ${DB_PORT}:5432
+    networks: 
+      - boilerplate
+  redis:
+    image: bitnami/redis:latest
+    environment:
+      ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - ${REDIS_PORT}:6379
+    volumes:
+      - redis_data:/bitnami/redis/data
+    networks:
+      - boilerplate
+  minio:
+    image: bitnami/minio:latest
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_DEFAULT_BUCKETS: ${MINIO_DEFAULT_BUCKET}:none
+    ports:
+      - ${MINIO_PORT}:9000
+    volumes:
+      - minio_data:/data
+    networks:
+      - boilerplate
+  worker:
+    image: ${WORKER_IMAGE}
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      DB_PORT: ${DB_PORT}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_QUEUE: ${REDIS_QUEUE}
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_DEFAULT_BUCKETS: ${MINIO_DEFAULT_BUCKET}
+    depends_on: 
+      - ${POSTGRES_HOST}
+      - ${REDIS_HOST}
+      - ${MINIO_HOST}
+    networks:
+      - boilerplate
+volumes:
+  redis_data:
+  minio_data:
+networks:
+  boilerplate:
+
