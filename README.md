@@ -5,7 +5,7 @@
 # Boilerplate Application
 This boilerplate is designed as a tutorial for deploying a Flask application with additional services.
 
-# New to Docker? Go to [Getting Started](#-Getting-started)
+# New to Docker? Go to [Getting Started](#getting-started)
 
 This application contains the following services:
 
