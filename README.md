@@ -15,11 +15,11 @@ This application contains the following services:
 4. Redis
 5. A worker
 
-The default is to use KeyCloak for authentication. I have commented out the decorators for requiring a login [here](https://github.com/bryaneadams/boilerplate_application/blob/9fe7878558bb57ac9e431ff3f53770cf3411a43a/flask-app/boilerplate/boilerform/boilerform.py#L35) and [here](https://github.com/bryaneadams/boilerplate_application/blob/9fe7878558bb57ac9e431ff3f53770cf3411a43a/flask-app/manage.py#L110). This is to help people new to authentication.
+The default is to use KeyCloak for authentication. I have commented out the decorators for requiring a login [here](flask-app/boilerplate/boilerform/boilerform.py#L35) and [here](flask-app/manage.py#L110). This is to help people new to authentication.
 
 ## Quick initial comments.
 
-All environment variables used in the deployment are located in the [.env](https://github.com/bryaneadams/boilerplate_application/blob/main/.env) file.
+All environment variables used in the deployment are located in the [.env](.env) file.
 
 ### To run the tech stack
 
@@ -37,13 +37,12 @@ All environment variables used in the deployment are located in the [.env](https
 # Getting started
 
 [![forthebadge](https://forthebadge.com/images/badges/reading-6th-grade-level.svg)](https://forthebadge.com)
+
 ## Docker what is Docker?!
 
-I am assuming if you are new to Docker you are probably using a Windows machine. This is not a bad thing, in fact often at work it is all you get. You will need to install some services to use this repo. I will assume you have a `github` account and I will provide you a list of software to install (and recommend others).
+I am assuming if you are new to Docker you are probably using a Windows machine. This is not a bad thing, in fact often at work it is all you get. You will need to install some services to use this repo. I will assume you have a GitHub account (after all you are looking at GitHub) and I will provide you a list of software to install (and recommend others).
 
 ### Install the following
-
-#### Must have
 
 1. Install [Docker](https://docs.docker.com/docker-for-windows/install/).
 
@@ -53,7 +52,7 @@ I am assuming if you are new to Docker you are probably using a Windows machine.
 
 ### Getting started
 
-Now the hard part is out of the way, go ahead and ensure Docker is running. For this I will assume you are using a Windows computer. In the bottom left-hand corner click the windows `start` button. Type `git` in the search menu and select [`Git Bash`](https://git-scm.com/downloads) `Git Bash`. Once the black window opens, type `docker ps` and you should get something back that looks like this:
+Now the hard part is out of the way, go ahead and ensure Docker is running. For this I will assume you are using a Windows machine. In the bottom left-hand corner click the windows `start` button. Type `git` in the search menu and select [`Git Bash`](https://git-scm.com/downloads) `Git Bash`. Once the black window opens, type `docker ps` and you should get something back that looks like this:
 
 ```
 % docker ps
@@ -63,6 +62,8 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 If you got something that looks like this, then you most likely need to start Docker. In the bottom left-hand corner click the windows `start` button. Type `docker` and select `Docker Desktop`. This will get it running and repeat the step before.
 
 [![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)](https://forthebadge.com)
+
+####
 
 ### Pulling Docker Images
 
@@ -95,7 +96,7 @@ docker-compose up
 
 There will be a bunch of logs appear, but that is normal. After approximately 30 seconds your application will be running.
 
-Visit [http://localhost:5000](http://localhost:5000) to see your application. Under `Create Form` select `Create New Form`. Type some text and click `Submit`. Next visit [http://localhost:9000](http://localhost:9000) and sign into MinIO. The default Access Key is [bryanisawesome](https://github.com/bryaneadams/boilerplate_application/blob/9fe7878558bb57ac9e431ff3f53770cf3411a43a/.env#L16) and Secret Key is [bryanrocks](https://github.com/bryaneadams/boilerplate_application/blob/9fe7878558bb57ac9e431ff3f53770cf3411a43a/.env#L17). Under the `results` bucket you will see a text file with the text you just typed. The name of the file will be [`dd-mm-yyyy_HH:MM:SS_Bryan_Rocks.txt`](https://github.com/bryaneadams/boilerplate_application/blob/9fe7878558bb57ac9e431ff3f53770cf3411a43a/worker/boiler_worker.py#L41)
+Visit [http://localhost:5000](http://localhost:5000) to see your application. Under `Create Form` select `Create New Form`. Type some text and click `Submit`. Next visit [http://localhost:9000](http://localhost:9000) and sign into MinIO. The default Access Key is [bryanisawesome](.env#L16) and Secret Key is [bryanrocks](.env#L17). Under the `results` bucket you will see a text file with the text you just typed. The name of the file will be [`dd-mm-yyyy_HH:MM:SS_Bryan_Rocks.txt`](worker/boiler_worker.py#L41)
 
 
 [![forthebadge](https://forthebadge.com/images/badges/it-works-why.svg)](https://forthebadge.com)
